@@ -140,8 +140,11 @@ public class Runigram {
 
 		for (int i=0; i<width; i++){
 			for (int j=0; j<height; j++){
-				int iImage = (int) (i * scaleW);
-				int jImage = (int) (j * scaleH);
+				int iImage = (int) (i * scaleW); 
+                int jImage = (int) (j * scaleH); 
+                
+                if (iImage >= imageW) iImage = imageW - 1;
+                if (jImage >= imageH) jImage = imageH - 1;
 				imageScaled [i][j] = image [iImage][jImage];
 			}
 		}
