@@ -41,11 +41,7 @@ public class Runigram {
 				image [i][j] = new Color(in.readInt(), in.readInt(), in.readInt());
 			}
 		}
-		// Reads the RGB values from the file into the image array. 
-		// For each pixel (i,j), reads 3 values from the file,
-		// creates from the 3 colors a new Color object, and 
-		// makes pixel (i,j) refer to that object.
-		//// Replace the following statement with your code.
+
 		return image;
 	}
 
@@ -144,8 +140,8 @@ public class Runigram {
 
 		for (int i=0; i<width; i++){
 			for (int j=0; j<height; j++){
-				int iImage = (int) (i * scaleH);
-				int jImage = (int) (j * scaleW);
+				int iImage = (int) (i * scaleW);
+				int jImage = (int) (j * scaleH);
 				imageScaled [i][j] = image [iImage][jImage];
 			}
 		}
@@ -200,7 +196,7 @@ public class Runigram {
 		}
 		
 		for (int i=0; i <= n; i++){
-			double alpha = (double) n-i;
+			double alpha = (double) (n-i) /n;
 			Color [][] morph = blend(source, target, alpha);
 			Runigram.display(morph);
 			StdDraw.pause(500);
