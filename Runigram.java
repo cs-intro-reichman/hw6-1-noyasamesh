@@ -130,19 +130,18 @@ public class Runigram {
 	 * The image is scaled (resized) to have the given width and height.
 	 */
 	public static Color[][] scaled(Color[][] image, int width, int height) {
-		int imageW = image.length;
-		int imageH = image[0].length;
-
-		Color[][] imageScaled = new Color[height][width];  // [rows][cols]
+		iint imageH = image.length;        // Number of rows = height
+    int imageW = image[0].length;     // Number of columns = width
     
-    double scaleH = (double) imageH / height;
-    double scaleW = (double) imageW / width;
+    Color[][] imageScaled = new Color[height][width];
     
-    for (int i = 0; i < height; i++) {        // i = row
-        for (int j = 0; j < width; j++) {     // j = column
-            int iImage = (int) (i * scaleH); 
-            int jImage = (int) (j * scaleW); 
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            // Calculate source position with proper rounding
+            int iImage = (int) ((double) i * imageH / height);
+            int jImage = (int) ((double) j * imageW / width);
             
+            // Safety bounds (should not be needed, but just in case)
             if (iImage >= imageH) iImage = imageH - 1;
             if (jImage >= imageW) jImage = imageW - 1;
             
