@@ -133,23 +133,25 @@ public class Runigram {
 		int imageW = image.length;
 		int imageH = image[0].length;
 
-		Color [][] imageScaled = new Color [width][height];
-
-		double scaleW = (double) imageW / width;
-		double scaleH = (double) imageH / height;
-
-		for (int i=0; i<width; i++){
-			for (int j=0; j<height; j++){
-				int iImage = (int) (i * scaleW); 
-                int jImage = (int) (j * scaleH); 
-                
-                if (iImage >= imageW) iImage = imageW - 1;
-                if (jImage >= imageH) jImage = imageH - 1;
-				imageScaled [i][j] = image [iImage][jImage];
-			}
-		}
-		return imageScaled;
-	}
+		Color[][] imageScaled = new Color[height][width];  // [rows][cols]
+    
+    double scaleH = (double) imageH / height;
+    double scaleW = (double) imageW / width;
+    
+    for (int i = 0; i < height; i++) {        // i = row
+        for (int j = 0; j < width; j++) {     // j = column
+            int iImage = (int) (i * scaleH); 
+            int jImage = (int) (j * scaleW); 
+            
+            if (iImage >= imageH) iImage = imageH - 1;
+            if (jImage >= imageW) jImage = imageW - 1;
+            
+            imageScaled[i][j] = image[iImage][jImage];
+        }
+    }
+    
+    return imageScaled;
+}
 	
 	/**
 	 * Computes and returns a blended color which is a linear combination of the two given
